@@ -7,17 +7,23 @@ $( function () {
     offset: 120
   });
 
-  $('.js-page-marker').waypoint( function(direction) {
-    currentSection = $(this.element).attr('rel');
-    currentLabel = $('.js-section-label span.current').html();
-    markOutline(currentSection);
+  $('.js-page-marker-top').waypoint( function(direction) {
+    if (direction == 'down') {
+      currentSection = $(this.element).attr('rel');
+      currentLabel = $('.js-section-label span.current').html();
+      markOutline(currentSection);
+      setUpLabel(currentSection);
+    }
+  }, {
+    offset: 120
+  });
 
-    if (currentSection != currentLabel) { 
-      if (direction == 'down') {
-        setUpLabel(currentSection);
-      } else {
-        setDownLabel(currentSection);
-      }
+  $('.js-page-marker-bottom').waypoint( function(direction) {
+    if (direction == 'up') {
+      currentSection = $(this.element).attr('rel');
+      currentLabel = $('.js-section-label span.current').html();
+      markOutline(currentSection);
+      setDownLabel(currentSection);
     }
   }, {
     offset: 120
