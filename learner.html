@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600' rel='stylesheet' type='text/css'>
+    <link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <link href='style.css' rel='stylesheet' type='text/css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js'></script>
+    <script src='jquery.waypoints.js'></script>
+    <script src='scripts.js'></script>
+  </head>
+  <body>
+    <header class='metabar l-metabar'>
+      <div class='l-metabar-left l-vertical-center'>
+        <img src='logo.png' width='108'>
+      </div>
+      <div class='l-metabar-center'>
+        <span class='section-label js-section-label'>
+          <span class='previous'>&nbsp;</span>
+          <span class='current'>&nbsp;</span>
+          <span class='next'>&nbsp;</span>
+        </span>
+      </div>
+      <div class='l-metabar-right l-vertical-center'>
+        <i class='fa fa-search l-mrm'></i>
+        <img src='steve.png' width='32'>
+      </div>
+      <div class='progress-bar js-progress-bar'></div>
+    </header>
+    <main>
+      <div class='l-leftbar js-stick'>
+        <ul class='outline'>
+          <li>
+            <div class='outline__row outline__row--header js-expand'>
+              <i class='fa fa-chevron-right'></i>
+              <a rel='Serverless Puppet'>
+                Serverless Puppet
+              </a>
+            </div>
+            <ul>
+              <li>
+                <div class='outline__row'>
+                  <a rel='Resources and the RAL'>
+                    Resources and the RAL
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class='outline__row'>
+                  <a rel='Manifests'>
+                    Manifests
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class='outline__row'>
+                  <a>Ordering</a>
+                </div>
+              </li>
+              <li>
+                <div class='outline__row'>
+                  <a>Variables, Conditionals</a>
+                </div>
+              </li>
+              <li>
+                <div class='outline__row'>
+                  <a>Modules and Classes</a>
+                </div>
+              </li>
+              <li>
+                <div class='outline__row'>
+                  <a>Templates</a>
+                </div>
+              </li>
+              <li>
+                <div class='outline__row'>
+                  <a>Class Parameters</a>
+                </div>
+              </li>
+              <li>
+                <div class='outline__row'>
+                  <a>Defined Types</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <div class='outline__row outline__row--header js-expand'>
+              <i class='fa fa-chevron-right'></i>
+              <a>Master/Agent Puppet</a>
+            </div>
+            <ul>
+              <li>
+                <div class='outline__row'>
+                  <a>Agent Master Basic</a>
+                </div>
+              </li>
+              <li>
+                <div class='outline__row'>
+                  <a>Agent Prep</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class='l-content-wrapper js-waypoint'>
+        <div class='module path l-content'>
+          <a class='js-page-marker' rel=''></a>
+          <h1>Learning Puppet</h1>
+          <div class='module'>
+            <a class='js-page-marker' rel='Serverless Puppet'></a>
+            <h2>Serverless Puppet</h2>
+            <div class='section js-track-progress'>
+              <a class='js-page-marker' rel='Resources and the RAL'></a>
+              <h3>Resources and the RAL</h3>
+              <p>
+                Welcome to Learning Puppet! This series covers the basics of
+                writing Puppet code and using Puppet Enterprise. You should
+                already have a copy of the Learning Puppet VM; if you don't, you
+                can download it for free.
+              </p>
+              <h4>Begin</h4>
+              <p>
+                <span class='highlighted'>
+                  Log into the Learning Puppet VM as root, and run
+                  <span class='code'>puppet resource service</span>
+                  .
+                </span>
+                This command will return something like the following:
+              </p>
+              <pre>service { 'NetworkManager':&#x000A;    ensure => 'stopped',&#x000A;    enable => 'false',&#x000A;}&#x000A;service { 'acpid':&#x000A;    ensure => 'running',&#x000A;    enable => 'true',&#x000A;}&#x000A;service { 'anacron':&#x000A;    ensure => 'stopped',&#x000A;    enable => 'true',&#x000A;}&#x000A;service { 'apmd':&#x000A;    ensure => 'running',&#x000A;    enable => 'true',&#x000A;}&#x000A;...&#x000A;... (etc.)&#x000A;</pre>
+              <p>
+                Okay! You've just met your first Puppet resources.
+              </p>
+              <blockquote>
+                <h5>What Just Happened?</h5>
+                <ul>
+                  <li>
+                    <span class='code'>puppet</span>
+                    : Most of Puppet's functionality comes from a single
+                    <span class='code'>puppet</span>
+                    comand, which has many subcommands.
+                  </li>
+                  <li>
+                    <span class='code'>resource</span>
+                    : The
+                    <span class='code'>resource</span>
+                    subcommand can inspect and modify resources interactively.
+                  </li>
+                  <li>
+                    <span class='code'>service</span>
+                    : The first argument to the
+                    <span class='code'>puppet resource</span>
+                    command must be a
+                    <strong>resource type,</strong>
+                    which you'll learn more about below. A full list of types
+                    can be found at
+                    <a>the Puppet type reference.</a>
+                  </li>
+                </ul>
+                <p>
+                  Taken together, this command inspected every service on the
+                  system, whether running or stopped.
+                </p>
+              </blockquote>
+              <h4>Resources</h4>
+              <p>
+                Imagine a system's configuration as a collection of many
+                independent atomic units; call them
+                <strong>"resources."</strong>
+              </p>
+              <p>
+                These pieces vary in size, complexity, and lifespan. Any of the
+                following (and more) can be modeled as a single resource:
+              </p>
+              <ul>
+                <li>
+                  A user account
+                </li>
+                <li>
+                  A specific file
+                </li>
+                <li>
+                  A directory of files
+                </li>
+                <li>
+                  A software package
+                </li>
+                <li>
+                  A running service
+                </li>
+                <li>
+                  A scheduled cron job
+                </li>
+                <li>
+                  An invocation of a shell command, when certain conditions are
+                  met
+                </li>
+              </ul>
+              <p>
+                Any single resource is very similar to a group of related
+                resources:
+              </p>
+              <ul>
+                <li>
+                  Every file has a path and an owner
+                </li>
+                <li>
+                  Every user has a name, a UID, and a group
+                </li>
+              </ul>
+              <p>
+                The implementation might differ &mdash; for example, you'd need
+                a different command to start or stop a service on Windows than
+                you would on Linux, and even across Linux distributions there's
+                some variety. But conceptually, you're still starting or
+                stopping a service, regardless of what you type into the
+                console.
+              </p>
+              <h4>Abstraction</h4>
+              <p>
+                If you think about resources in this way, there are two notable
+                insights you can derive:
+              </p>
+              <ul>
+                <li>
+                  <em>
+                    Similar resources can be grouped into types.
+                  </em>
+                  Services will tend to look like services, and users will tend
+                  to look like users.
+                </li>
+                <li>
+                  <em>
+                    The description of a resource type can be separated from
+                    its implementation.
+                  </em>
+                  You can talk about whether a service is started without
+                  needing to know how to start it.
+                </li>
+              </ul>
+              <p>
+                To these, Puppet adds a third insight:
+              </p>
+              <ul>
+                <li>
+                  With a good enough description of a resource type,
+                  <em>
+                    it's possible to declare a desired state for a resource
+                  </em>
+                  &mdash; instead of saying "run this command that starts a
+                  service," say "ensure this service is running."
+                </li>
+              </ul>
+              <p>
+                These three insights form Puppet's resource abstraction layer
+                (RAL). The RAL consists of types (high-level models) and
+                providers (platform-specific implementations) &mdash; by
+                splitting the two, it lets you describe desired resource states
+                in a way that isn't tied to a specific OS.
+              </p>
+              <h4 id='anatomy-of-a-resource'>Anatomy of a Resource</h4>
+              <p>
+                In Puppet, every resource is an instance of a
+                <strong>resource type</strong>
+                and is identified by a
+                <strong>title;</strong>
+                it has a number of
+                <strong>attributes</strong>
+                (which are defined by the type), and each attribute has a
+                <strong>value.</strong>
+              </p>
+              <p>Puppet uses its own language to describe and manage resources:</p>
+              <pre><code class='ruby'></code></pre>
+              <p>
+                This syntax is called a
+                <strong>resource declaration.</strong>
+                You saw it earlier when you ran
+                <code>puppet resource service</code>,
+              </p>
+              <blockquote>
+                <p>Try and identify all four parts of the resource declaration above:</p>
+                <ul>
+                  <li>Type</li>
+                  <li>Title</li>
+                  <li>Attributes</li>
+                  <li>Values</li>
+                </ul>
+              </blockquote>
+              <h4 id='resource-types'>Resource Types</h4>
+              <p>
+                As mentioned above, every resource has a
+                <strong>type.</strong>
+              </p>
+              <p>
+                Puppet has many built-in resource types, and you can install even more as plugins. Each type can behave a bit differently, and has a different set of attributes available.
+              </p>
+              <p>
+                There are several ways to get information about resource types:
+              </p>
+              <h5 id='the-cheat-sheet'>The Cheat Sheet</h5>
+              <p>
+                Not all resource types are equally common or useful, so we’ve made a printable cheat sheet that explains the eight most useful types.
+                <a href='/puppet_core_types_cheatsheet.pdf'>Download the core types cheat sheet here.</a>
+              </p>
+              <h5 id='the-type-reference'>The Type Reference</h5>
+              <p>
+                Experienced Puppet users spend most of their time in
+                <a href='../references/latest/type.html'>the type reference</a>.
+              </p>
+              <p>
+                This page lists
+                <em>all</em>
+                of Puppet’s built-in resource types, in extreme detail. It can be a bit overwhelming for a new user, but it has most of the info you’ll need in a normal day of writing Puppet code.
+              </p>
+              <p>
+                We generate a new type reference for every new version of Puppet, to help ensure that the descriptions stay accurate.
+              </p>
+              <h5 id='puppet-describe'>Puppet Describe</h5>
+              <p>
+                The
+                <code>puppet describe</code>
+                subcommand can list info about the
+                <em>currently installed</em>
+                resource types on a given machine. This is different from the type reference because it also catches plugins installed by a user, in addition to the built-in types.
+              </p>
+              <ul>
+                <li>
+                  <code>puppet describe -l</code>
+                  &mdash; List all of the resource types available on the system.
+                </li>
+                <li>
+                  <code>puppet describe -s <TYPE></code>
+                  &mdash; Print short information about a type, without describing every attribute
+                </li>
+                <li>
+                  <code>puppet describe <TYPE></code>
+                  &mdash; Print long information, similar to what appears in the
+                  <a href='../references/latest/type.html'>type reference</a>.
+                </li>
+              </ul>
+              <h4>Browsing and Inspecting Resources</h4>
+              <p>
+                In the next few chapters, we’ll talk about using the Puppet language to manage resources. For now, though, let’s just look at them for a while.
+              </p>
+              <h5 id='live-management-in-the-console'>Live Management in the Console</h5>
+              <p>
+                Puppet Enterprise includes a web console for controlling many of its features. One of the things it can do is browse and inspect resources on any PE systems the console can reach. This supports a limited number of resource types, but has some useful comparison features for correlating data across a large number of nodes.
+              </p>
+              <blockquote>
+                <h5 id='logging-in'>Logging In</h5>
+                <p>
+                  When you first started your VM, it gave you the URL, username, and password for accessing the console. The user and password should always be
+                  <code>puppet@example.com</code>
+                  and
+                  <code>learningpuppet</code>.
+                  <code>https://<IP ADDRESS></code>;
+                  <code>facter ipaddress</code>
+                  at the command line.
+                </p>
+              </blockquote>
+              <p>
+                Once logged in, navigate to “Live Management” in the top menu bar, then click the “Browse Resources” tab. From here, you can
+                <a href='/pe/3.0/orchestration_resources.html'>use orchestration to find and inspect resources</a>.
+              </p>
+              <p>
+                Since you’re only using a single node, you won’t see much in the way of comparisons, but you can see the current states of packages, user accounts, etc.
+              </p>
+              <h5 id='the-puppet-resource-command'>The Puppet Resource Command</h5>
+              <p>
+                Puppet includes a command called
+                <code>puppet resource</code>,
+              </p>
+              <p>
+                Usage of puppet resource is as follows:
+              </p>
+              <pre># puppet resource <TYPE> [<NAME>] [ATTRIBUTE=VALUE ...]&#x000A;</pre>
+              <ul>
+                <li>
+                  The first argument must be a resource type. If no other arguments are given, it will inspect every resource of that type it can find.
+                </li>
+                <li>
+                  The second argument (optional) is the name of a resource. If no other arguments are given, it will inspect that resource.
+                </li>
+                <li>
+                  After the name, you can optionally specify any number of attributes and values. This will sync those attributes to the desired state, then inspect the final state of the resource.
+                </li>
+                <li>
+                  Alternately, if you specify a resource name and use the
+                  <code>--edit</code>
+                  flag, you can change that resource in your text editor; after the buffer is saved and closed, Puppet will modify the resource to match your changes.
+                </li>
+              </ul>
+              <blockquote>
+                <h5 id='exercises'>Exercises</h5>
+                <p>Inspecting a single resource:</p>
+                <pre># puppet resource user root&#x000A;&#x000A;user { 'root':&#x000A;  ensure           => 'present',&#x000A;  comment          => 'root',&#x000A;  gid              => '0',&#x000A;  groups           => ['root', 'bin', 'daemon', 'sys', 'adm', 'disk', 'wheel'],&#x000A;  home             => '/root',&#x000A;  password         => '$1$jrm5tnjw$h8JJ9mCZLmJvIxvDLjw1M/',&#x000A;  password_max_age => '99999',&#x000A;  password_min_age => '0',&#x000A;  shell            => '/bin/bash',&#x000A;  uid              => '0',&#x000A;}&#x000A;</pre>
+                <p>
+                  Setting a new desired state for a resource:
+                </p>
+                <pre># puppet resource user katie ensure=present shell="/bin/bash" home="/home/katie" managehome=true&#x000A;&#x000A;notice: /User[katie]/ensure: created&#x000A;&#x000A;user { 'katie':&#x000A;  ensure => 'present',&#x000A;  home   => '/home/katie',&#x000A;  shell  => '/bin/bash'&#x000A;}&#x000A;</pre>
+              </blockquote>
+              <h4 id='next'>Next</h4>
+              <p>
+                <strong>Next Lesson:</strong>
+              </p>
+              <p>
+                The puppet resource command can be useful for one-off jobs, but Puppet was born for greater things.
+                <a href='./manifests.html'>Time to write some manifests</a>.
+              </p>
+              <p>
+                <strong>Off-Road:</strong>
+              </p>
+              <p>
+                The LP VM is a tiny sandbox system, and it doesn’t have much going on. If you have some dev machines that look more like your actual servers, why not
+                <a href='http://info.puppetlabs.com/download-pe.html'>download Puppet Enterprise for free</a>
+                and inspect them? Follow
+                <a href='/pe/latest/quick_start.html'>the quick start guide</a>
+                to get a small environment installed, then try using the console to inspect resources for many systems at once.
+              </p>
+            </div>
+            <div class='section'>
+              <a class='js-page-marker' rel='Manifests'></a>
+              <h3>Manifests</h3>
+            </div>
+          </div>
+        </div>
+        <div class='spacer'></div>
+      </div>
+      <div class='l-rightbar'>
+        Notes section
+      </div>
+    </main>
+  </body>
+</html>

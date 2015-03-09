@@ -1,0 +1,143 @@
+.module {
+
+  a {
+    @extend %text-active;
+    text-decoration: underline;
+    
+    &:hover {
+      color: darken($primary, 10%);
+    }
+  }
+
+  aside, blockquote {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-bottom: 36px;
+    padding: 36px;
+    
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    li:last-child {
+      margin-bottom: 0;
+    }
+
+    ul:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  h1 {
+    color: #444;
+    font-family: 'Source Sans Pro';
+    font-size: 58px;
+    font-weight: 600;
+    margin-bottom: 100px;
+    text-align: center;
+  }
+
+  h2 {
+    color: #444;
+    font-family: 'Source Sans Pro';
+    font-size: 38px;
+    font-weight: 600;
+    margin-bottom: 100px;
+    text-align: center;
+  }
+
+  h3 {
+    color: #444;
+    font-family: 'Source Sans Pro';
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+
+  h4 {
+    color: #444;
+    font-family: 'Source Sans Pro';
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+
+  h5 {
+    color: #444;
+    font-family: 'Source Sans Pro';
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+
+  p {
+    color: #444;
+    font-family: 'Merriweather';
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 1.6;
+    margin-bottom: 36px;
+    text-align: left;
+    
+    & + ul {
+      margin-top: -24px;
+    }
+  }
+
+  pre {
+    @extend %text-code;
+    background: #eee;
+    border-radius: 2px;
+    margin-bottom: 36px;
+    padding: 36px;
+  }
+
+  ul {
+    padding-left: 36px;
+    margin-bottom: 36px;
+  }
+
+  li {
+    color: #444;
+    font-family: 'Merriweather';
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    text-align: left;
+  }
+
+  .highlighted {
+    background: rgba(48, 190, 146, .25);
+    cursor: pointer;
+    
+    .code, code {
+      background: lighten($primary, 20%);
+      border: 1px solid $primary;
+    }
+    
+    &:hover {
+      background: rgba(48, 190, 146, .4);
+    }
+
+    &.is-active {
+      background: rgba(48, 190, 146, .4);
+    }
+  }
+
+  .code, code {
+    @extend %text-code;
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 2px;
+            border-radius: 2px;
+    display: inline-block;
+    padding: 0 3px;
+    position: relative;
+    top: -1px;
+  }
+}

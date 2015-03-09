@@ -1,0 +1,131 @@
+.metabar {
+  background: rgba(255, 255, 255, .95);
+  border-bottom: 1px solid #ddd;
+  border-top: 3px solid #444;
+}
+
+.outline {
+  background: #fff;
+  border-top: 1px solid #ddd;
+}
+
+.outline__row {
+  @include transition(all .07s ease-in-out);
+  @extend %text-small;
+  border-bottom: 1px solid #ddd;
+  opacity: 0;
+  padding: 10px;
+  position: relative;
+  left: -50px;
+  
+  &.visible {
+    opacity: 1;
+    left: 0;
+  }
+  
+  &:hover {
+    background: rgba(0, 0, 0, .02);
+  }
+
+  i.fa.fa-chevron-right {
+    @include transition(all .2s ease-in-out);
+    font-size: 9px;
+    position: relative;
+    top: -2px;
+  }
+  
+  a {
+    transition: none;
+    @extend %text-small;
+    
+    &.is-active {
+      @extend %text-active;
+    }
+  }
+
+  & + ul .outline__row {
+    padding-left: 30px;
+  }
+
+  & + ul {
+    display: none;
+  }
+
+  &.is-active {
+    i.fa.fa-chevron-right {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.outline__row--header {
+  background: #f4f4f4;
+  cursor: pointer;
+  
+  &:hover {
+    background: rgba( 0, 0, 0, .06);
+  }
+}
+
+.progress-bar {
+  background: $primary;
+  position: absolute;
+  height: 3px;
+  top: 55px;
+  width: 0%;
+}
+
+.section-label {
+  color: #444;
+  display: block;
+  position: relative;
+  text-align: center;
+  top: 16px;
+  z-index: 500;
+  
+  span {
+    display: block;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+
+  span.previous {
+    opacity: 0;
+    top: -30px;
+  }
+  
+  span.current {
+    opacity: 1;
+    top: 0px;
+  }
+
+  span.next {
+    opacity: 0;
+    top: 40px;
+  }
+}
+
+.spacer {
+  height: 5000px;
+}
+
+%text-small {
+  color: #444;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+%text-active {
+  color: $primary;
+  font-weight: $font-weight-semibold;
+}
+
+%text-code {
+  color: #444;
+  font-family: 'Source Code Pro';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;  
+}

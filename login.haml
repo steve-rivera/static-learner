@@ -1,0 +1,30 @@
+!!!5
+
+%html
+
+	%head
+		%link{ href: 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600', rel:'stylesheet', type: 'text/css' }
+		%link{ href: 'http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', rel: 'stylesheet', type: 'text/css' }
+		%link{ href: 'style.css', rel: 'stylesheet', type: 'text/css' }
+
+	%body
+		%section
+			.l-wrap
+				.l-minimal-form.l-centered.r-mobile-full
+					%img.l-mbl{ src: 'logo.png', width: 143}
+					%a.button.button--full-width.button--secondary.l-mbm{ href: '#' } Sign In With GitHub
+					%p.l-mbm or
+					%a{ href: '#' } Sign In With Email
+
+					%form.l-mts
+						%label.l-mbs.form-error
+							Email Address or Username
+							%input{ type: 'email' }
+							%p This input is whack.
+
+						%label.l-mbs
+							Password
+							%input{ type: 'password' }
+
+						%submit.button.button--full-width Sign In
+								

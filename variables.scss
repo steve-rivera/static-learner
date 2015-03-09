@@ -1,0 +1,34 @@
+
+$font-primary: 'Source Sans Pro';
+$font-size-tiny: 12px;
+$font-size-small: 14px;
+$font-size-default: 16px;
+$font-size-large: 18px;
+$font-color-default: #666666;
+$font-weight-light: 200;
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+
+$primary: #30BE92;
+$secondary: #666666;
+$tertiary: #3F6D89;
+$cancel: #DDDDDD;
+$error: #D02323;
+
+$gray1: #444;
+$gray2: #666;
+$gray3: $secondary;
+
+$line-color: #DDDDDD;
+$shadow-color: rgba(0, 0, 0, .1);
+
+$border-radius: 2px;
+$border-standard: 1px solid $line-color;
+
+$max-width: 1250px;
+$desktop-width: 1235px;
+$tablet-width: 950px;
+$mobile-width: 690px;
+$desktop: new-breakpoint(max-width 1235px);
+$tablet: new-breakpoint(max-width 950px);
+$mobile: new-breakpoint(max-width 690px 4);

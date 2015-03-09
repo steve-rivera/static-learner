@@ -1,0 +1,197 @@
+!!!5
+
+%html
+
+	%head
+		%link{ href: 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600', rel:'stylesheet', type: 'text/css' }
+		%link{ href: 'http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', rel: 'stylesheet', type: 'text/css' }
+		%link{ href: 'style.css', rel: 'stylesheet', type: 'text/css' }
+
+	%body
+
+		%aside.l-mobile-sidebar
+			.mobile-sidebar
+				%header.mobile-sidebar__header
+					.l-wrap
+						.l-logo-area--mobile.l-centered
+							%img{ src: 'logo-white.png', width: 143}
+						.l-close-area.l-centered
+							%i.fa.fa-close.mobile-sidebar__close
+
+				.mobile-sidebar__add.l-mtm.l-mbm
+					.l-wrap
+						%a.button.button--full-width{ href: '#' } + Add New
+						
+				.mobile-sidebar__menu
+					%ul.l-vertical-list
+						%li
+							%a.nav-link.nav-link--white.is-active{ href: '#' }
+								%i.fa.fa-home.l-mrs
+								Dashboard
+						%li
+							%a.nav-link.nav-link--white{ href: '#' }
+								%i.fa.fa-lightbulb-o.l-mrs
+								My Learning
+						%li
+							%a.nav-link.nav-link--white{ href: '#' }
+								%i.fa.fa-archive.l-mrs
+								My Customized Paths
+						%li
+							%a.nav-link.nav-link--white{ href: '#' }
+								%i.fa.fa-user.l-mrs
+								My Profile
+						%li
+							%a.nav-link.nav-link--white{ href: '#' }
+								%i.fa.fa-cog.l-mrs
+								Settings
+						%li
+							%a.nav-link.nav-link--white{ href: '#' }
+								%i.fa.fa-sign-out.l-mrs
+								Sign Out
+
+		.l-page-wrapper
+			%header.page-header
+				.l-wrap
+					.l-navicon-area.l-centered.r-mobile-show
+						%i.fa.fa-navicon.navicon
+					.l-logo-area.r-mobile-centered
+						%img{ src: 'logo.png', width: 143}
+					.l-search-area.r-mobile-hide
+						%i.fa.fa-search.search__icon
+						%input.search__input{ placeholder: 'Search for Learning Paths...' }
+					%nav.l-top-nav.r-mobile-hide
+						%ul.l-horizontal-list.l-right
+							%li.l-mrm.l-drop-down-container
+								%a.top-nav-link
+									%i.fa.fa-plus-square.top-nav-link__icon
+									%span
+										Add New
+										%i.fa.fa-chevron-down.small-down-arrow
+								%aside.l-drop-down
+									.panel.panel--drop-down
+										%ul.l-vertical-list
+											%li
+												%a.nav-link{ href: '#' }
+													New Path
+													%p.text--small
+														A Learning Path is an organized collection of learning content that teaches learners a unified lesson.
+											%li
+												%a.nav-link{ href: '#' }
+													New Library
+													%p.text--small
+														A Library is a gathering place for learning content that you find that you can organize and save for later use.
+											%li
+												%a.nav-link{ href: '#' }
+													New Organization
+													%p.text--small
+														An Organization lets you invite team members to learn and customize private Learning Paths with you.
+
+											%hr.l-mts.l-mbs
+
+											%li
+												%a.nav-link{ href: '#' }
+													Add Learning Content
+													%p.text--small
+														If you have learning content that is outside of Outlearn you can import it into your libraries.
+
+							%li.l-mrm
+								%a.top-nav-link{ href: '#' }
+									%i.fa.fa-bell.top-nav-link__icon
+									%span Notifications
+
+							%li.l-drop-down-container
+								%a.top-nav-link
+									%img{ src: 'steve.png', width: 32 }
+									%span
+										Steve Rivera
+										%i.fa.fa-chevron-down.small-down-arrow
+								%aside.l-drop-down
+									.panel.panel--drop-down
+										%ul.l-vertical-list
+											%li
+												%a.nav-link.is-active{ href: '#' }
+													%i.fa.fa-home.l-mrs
+													Dashboard
+											%li
+												%a.nav-link{ href: '#' }
+													%i.fa.fa-lightbulb-o.l-mrs
+													My Learning
+											%li
+												%a.nav-link{ href: '#' }
+													%i.fa.fa-archive.l-mrs
+													My Customized Paths
+											%li
+												%a.nav-link{ href: '#' }
+													%i.fa.fa-user.l-mrs
+													My Profile
+											%li
+												%a.nav-link{ href: '#' }
+													%i.fa.fa-cog.l-mrs
+													Settings
+											%hr.l-mts.l-mbs
+											%li
+												%a.nav-link{ href: '#' }
+													%i.fa.fa-sign-out.l-mrs
+													Sign Out
+
+			%main.l-main-content-area
+				%section.flash
+					.l-wrap
+						%i.fa.fa-close.flash__close
+						%p.flash__message This is an example of a flash!
+
+				%section.l-mbm.l-mtm
+					.l-wrap.r-mobile-centered
+						%ul.l-horizontal-list
+							%li.l-mrs
+								%img.l-inline{ src: 'steve.png', width: 48 }
+							%li
+								%h1.l-inline Steve Rivera
+								%span.text--light @steve-rivera
+
+				%section
+					.l-wrap
+						%aside.l-sidebar.r-mobile-hide
+							.panel
+								%ul.l-vertical-list
+									%li
+										%a.nav-link.is-active{ href: '#' }
+											%i.fa.fa-home.l-mrs
+											Dashboard
+									%li
+										%a.nav-link{ href: '#' }
+											%i.fa.fa-lightbulb-o.l-mrs
+											My Learning
+									%li
+										%a.nav-link{ href: '#' }
+											%i.fa.fa-archive.l-mrs
+											My Customized Paths
+									%li
+										%a.nav-link{ href: '#' }
+											%i.fa.fa-user.l-mrs
+											My Profile
+									%li
+										%a.nav-link{ href: '#' }
+											%i.fa.fa-cog.l-mrs
+											Settings
+
+						%main.l-main-dashboard-area.r-mobile-full
+							.panel
+								.panel__header
+									%h3 Dashboard
+								.panel__content
+									%p
+										Welcome, Steve.
+									%p
+										To help get you started, here are some things you might want to do:
+									%a.button.l-mrs.l-mbs{ href: '#' } Explore Our Learning Paths
+									%a.button.button--secondary.l-mrs.l-mbs{ href: '#' } Import Your Own Learning Content
+									%a.button.button--secondary.l-mbs{ href: '#' } Update Your Profile
+									%p
+										And
+										%a{ href: '#' } here's an example of a link.
+
+			%footer.l-footer.page-footer
+				.l-wrap
+					%p Footer Stuff
+									
