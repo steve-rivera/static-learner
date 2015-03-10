@@ -94,13 +94,14 @@ p {
 
 .l-content-wrapper {
   box-sizing: border-box;
-  padding: 0 250px;
+  padding: 0 300px;
   position: relative;
   width: 100%; }
 
 .l-content {
   margin: 0 auto;
-  max-width: 650px; }
+  max-width: 650px;
+  position: relative; }
 
 .l-drop-down-container {
   display: inline-block;
@@ -223,6 +224,22 @@ p {
 .l-mts {
   margin-top: 10px; }
 
+.checkbox {
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  background: #fff;
+  border: 1px solid #bbb;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-block;
+  height: 10px;
+  margin: 0 3px;
+  width: 10px; }
+  .checkbox:hover {
+    border-color: #888; }
+
 .metabar {
   background: rgba(255, 255, 255, 0.95);
   border-bottom: 1px solid #ddd;
@@ -255,6 +272,10 @@ p {
     border-top: 1px solid #ddd;
     box-shadow: 0 3px 1px rgba(0, 0, 0, 0.04);
     padding: 10px 10px; }
+    .outline__row.is-active i {
+      color: #30be92 !important; }
+    .outline__row.is-active .checkbox {
+      border: 1px solid #30be92; }
     .outline__row.is-active a {
       color: #30be92 !important; }
   .outline__row:hover {
@@ -307,8 +328,20 @@ p {
     opacity: 0;
     top: 40px; }
 
-.spacer {
-  height: 500px; }
+.section-end {
+  background: #f1fcf8;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin: 90px 0 100px -7%;
+  padding: 64px;
+  position: relative;
+  width: 114%; }
+  .section-end span {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 300;
+    position: relative;
+    top: -15px; }
 
 .outline__row, .outline__row a {
   color: #444;
@@ -465,10 +498,9 @@ p {
   padding: 0 3px;
   position: relative;
   top: -1px; }
-.module .section {
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 100px;
-  padding-bottom: 68px; }
+.module .checkbox {
+  height: 50px;
+  width: 50px; }
 
 .r-mobile-show {
   display: none; }

@@ -1,3 +1,21 @@
+
+.checkbox {
+  @include transition(all .1s ease-in-out);
+  background: #fff;
+  border: 1px solid #bbb;
+  -webkit-border-radius: 2px;
+          border-radius: 2px;
+  cursor: pointer;
+  display: inline-block;
+  height: 10px;
+  margin: 0 3px;
+  width: 10px;
+  
+  &:hover {
+    border-color: #888;
+  }
+}
+
 .metabar {
   background: rgba(255, 255, 255, .95);
   border-bottom: 1px solid #ddd;
@@ -30,6 +48,14 @@
     border-top: 1px solid #ddd;
     box-shadow: 0 3px 1px rgba(0, 0, 0, .04);
     padding: 10px 10px;
+    
+    i {
+      color: $primary !important;
+    }
+
+    .checkbox {
+      border: 1px solid $primary;
+    }
 
     a {
       @extend %text-active;
@@ -49,6 +75,8 @@
     position: relative;
     top: -2px;
   }
+
+
   
   a {
     transition: none;
@@ -113,8 +141,22 @@
   }
 }
 
-.spacer {
-  height: 500px;
+.section-end {
+  background: lighten($primary, 50%);
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin: 90px 0 100px -7%;
+  padding: 64px;
+  position: relative;
+  width: 114%;
+  
+  span {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 300;
+    position: relative;
+    top: -15px;
+  }
 }
 
 %text-small {
