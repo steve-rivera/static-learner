@@ -298,7 +298,7 @@ p {
     top: 40px; }
 
 .spacer {
-  height: 5000px; }
+  height: 500px; }
 
 .outline__row, .outline__row a {
   color: #444;
@@ -309,7 +309,7 @@ p {
   color: #30be92;
   font-weight: 600; }
 
-.module pre, .module .code, .module code {
+.module code, .module pre code, .module .code {
   color: #444;
   font-family: 'Source Code Pro';
   font-size: 14px;
@@ -326,45 +326,54 @@ p {
   border: 1px solid #ddd;
   border-radius: 2px;
   margin-bottom: 36px;
-  padding: 36px; }
-  .module aside p:last-child, .module blockquote p:last-child {
+  padding: 18px; }
+  .module aside p:last-child,
+  .module aside li:last-child,
+  .module aside ul:last-child,
+  .module aside ol:last-child, .module blockquote p:last-child,
+  .module blockquote li:last-child,
+  .module blockquote ul:last-child,
+  .module blockquote ol:last-child {
     margin-bottom: 0; }
-  .module aside li:last-child, .module blockquote li:last-child {
-    margin-bottom: 0; }
-  .module aside ul:last-child, .module blockquote ul:last-child {
-    margin-bottom: 0; }
-.module h1 {
+.module h1.big {
   color: #444;
   font-family: 'Source Sans Pro';
   font-size: 58px;
   font-weight: 600;
   margin-bottom: 100px;
   text-align: center; }
-.module h2 {
+.module h2.big {
   color: #444;
   font-family: 'Source Sans Pro';
   font-size: 38px;
   font-weight: 600;
   margin-bottom: 100px;
   text-align: center; }
-.module h3 {
+.module h3.big {
   color: #444;
   font-family: 'Source Sans Pro';
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 5px;
   text-align: left; }
-.module h4 {
+.module h1 {
+  color: #444;
+  font-family: 'Source Sans Pro';
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  text-align: left; }
+.module h2 {
   color: #444;
   font-family: 'Source Sans Pro';
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 5px;
   text-align: left; }
-.module h5 {
+.module h3, .module h4, .module h5 {
   color: #444;
   font-family: 'Source Sans Pro';
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 600;
   margin-bottom: 5px;
   text-align: left; }
@@ -375,15 +384,41 @@ p {
   font-weight: 200;
   line-height: 1.6;
   margin-bottom: 36px;
-  text-align: left; }
+  text-align: left;
+  word-wrap: break-word;
+  /* IE 5+ */ }
   .module p + ul {
     margin-top: -24px; }
 .module pre {
   background: #eee;
   border-radius: 2px;
   margin-bottom: 36px;
-  padding: 36px; }
-.module ul {
+  padding: 18px;
+  white-space: pre;
+  /* CSS 2.0 */
+  white-space: pre-wrap;
+  /* CSS 2.1 */
+  white-space: pre-line;
+  /* CSS 3.0 */
+  white-space: -pre-wrap;
+  /* Opera 4-6 */
+  white-space: -o-pre-wrap;
+  /* Opera 7 */
+  white-space: -moz-pre-wrap;
+  /* Mozilla */
+  white-space: -hp-pre-wrap;
+  /* HP Printers */
+  word-wrap: break-word;
+  /* IE 5+ */ }
+  .module pre code {
+    background: none;
+    border: none;
+    border-radius: 0;
+    display: block;
+    padding: 0;
+    position: static;
+    top: 0; }
+.module ul, .module ol {
   padding-left: 36px;
   margin-bottom: 36px; }
 .module li {
@@ -394,6 +429,11 @@ p {
   line-height: 1.6;
   margin-bottom: 12px;
   text-align: left; }
+  .module li ul, .module li ol {
+    margin-bottom: 0;
+    margin-top: 12px; }
+.module ol ol {
+  list-style-type: lower-alpha; }
 .module .highlighted {
   background: rgba(48, 190, 146, 0.25);
   cursor: pointer; }
@@ -413,6 +453,10 @@ p {
   padding: 0 3px;
   position: relative;
   top: -1px; }
+.module .section {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 100px;
+  padding-bottom: 68px; }
 
 .r-mobile-show {
   display: none; }

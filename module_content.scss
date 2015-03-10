@@ -9,27 +9,27 @@
     }
   }
 
+  code {
+    @extend %text-code;
+  }
+
   aside, blockquote {
     background: #fafafa;
     border: 1px solid #ddd;
     border-radius: 2px;
     margin-bottom: 36px;
-    padding: 36px;
+    padding: 18px;
     
-    p:last-child {
+    p:last-child,
+    li:last-child,
+    ul:last-child,
+    ol:last-child {
       margin-bottom: 0;
     }
 
-    li:last-child {
-      margin-bottom: 0;
-    }
-
-    ul:last-child {
-      margin-bottom: 0;
-    }
   }
 
-  h1 {
+  h1.big {
     color: #444;
     font-family: 'Source Sans Pro';
     font-size: 58px;
@@ -38,7 +38,7 @@
     text-align: center;
   }
 
-  h2 {
+  h2.big {
     color: #444;
     font-family: 'Source Sans Pro';
     font-size: 38px;
@@ -47,7 +47,7 @@
     text-align: center;
   }
 
-  h3 {
+  h3.big {
     color: #444;
     font-family: 'Source Sans Pro';
     font-size: 28px;
@@ -56,7 +56,16 @@
     text-align: left;
   }
 
-  h4 {
+  h1 {
+    color: #444;
+    font-family: 'Source Sans Pro';
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+
+  h2 {
     color: #444;
     font-family: 'Source Sans Pro';
     font-size: 22px;
@@ -65,10 +74,10 @@
     text-align: left;
   }
 
-  h5 {
+  h3, h4, h5 {
     color: #444;
     font-family: 'Source Sans Pro';
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
     margin-bottom: 5px;
     text-align: left;
@@ -82,6 +91,7 @@
     line-height: 1.6;
     margin-bottom: 36px;
     text-align: left;
+    word-wrap: break-word;      /* IE 5+ */
     
     & + ul {
       margin-top: -24px;
@@ -89,14 +99,32 @@
   }
 
   pre {
-    @extend %text-code;
     background: #eee;
     border-radius: 2px;
     margin-bottom: 36px;
-    padding: 36px;
+    padding: 18px;
+    white-space: pre;           /* CSS 2.0 */
+    white-space: pre-wrap;      /* CSS 2.1 */
+    white-space: pre-line;      /* CSS 3.0 */
+    white-space: -pre-wrap;     /* Opera 4-6 */
+    white-space: -o-pre-wrap;   /* Opera 7 */
+    white-space: -moz-pre-wrap; /* Mozilla */
+    white-space: -hp-pre-wrap;  /* HP Printers */
+    word-wrap: break-word;      /* IE 5+ */
+    
+    code {
+      @extend %text-code;
+      background: none;
+      border: none;
+      border-radius: 0;
+      display: block;
+      padding: 0;
+      position: static;
+      top: 0;
+    }
   }
 
-  ul {
+  ul, ol {
     padding-left: 36px;
     margin-bottom: 36px;
   }
@@ -109,6 +137,15 @@
     line-height: 1.6;
     margin-bottom: 12px;
     text-align: left;
+    
+    ul, ol {
+      margin-bottom: 0;
+      margin-top: 12px;
+    }
+  }
+
+  ol ol {
+    list-style-type: lower-alpha;
   }
 
   .highlighted {
@@ -139,5 +176,11 @@
     padding: 0 3px;
     position: relative;
     top: -1px;
+  }
+
+  .section {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 100px;
+    padding-bottom: 68px;
   }
 }

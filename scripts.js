@@ -35,6 +35,8 @@ $( function () {
     offset: 120
   });
 
+
+
   $('.js-expand').click( function() {
     $(this).toggleClass('is-active');
     $(this).next('ul').slideToggle(500, 'easeInOutQuint');  
@@ -42,14 +44,14 @@ $( function () {
 
   $('.js-expand').first().click();
 
-  var time = 40;
+  var time = 80;
   $('.outline__row').each( function(i) {
 
     setTimeout( function(){ 
       $('.outline__row').eq(i).addClass('visible');
     }, time);
 
-    time += 40;
+    time += 80;
   });
 
   $(window).scroll( function() {
@@ -71,14 +73,6 @@ $( function () {
 
       $('.js-progress-bar').css('width', progress + '%');
     });
-
-    currentSection = $('a[rel="' + section + '"]').closest('.js-track-progress');
-    sectionHeight = currentSection.height();
-    if ( sectionHeight != null) {
-      sectionTop = currentSection.position().top;
-      progress = (currentPoint - sectionTop) / sectionHeight * 100;
-      alert(progress);
-    }
 
   })
 

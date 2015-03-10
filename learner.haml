@@ -78,19 +78,19 @@
         .module.path.l-content
 
           %a.js-page-marker-top{ rel: '' }
-          %h1 Learning Puppet
+          %h1.big Learning Puppet
           %a.js-page-marker-bottom{ rel: '' }
 
           .module
 
             %a.js-page-marker-top{ rel: 'Serverless Puppet' }
-            %h2 Serverless Puppet
+            %h2.big Serverless Puppet
             %a.js-page-marker-bottom{ rel: 'Serverless Puppet' }
 
             .section.js-track-progress
               
               %a.js-page-marker-top{ rel: 'Resources and the RAL' }
-              %h3 Resources and the RAL
+              %h3.big Resources and the RAL
 
               %p
                 Welcome to Learning Puppet! This series covers the basics of
@@ -443,11 +443,580 @@
 
               %a.js-page-marker-bottom{ rel: 'Resources and the RAL' }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             .section
               
               %a.js-page-marker-top{ rel: 'Manifests' }
-              %h3 Manifests
+              %h3.big Manifests
               %a.js-page-marker-bottom{ rel: 'Manifests' }
+
+              %h2#begin Begin
+              %p
+                Did you do the
+                %code puppet resource
+                exercises from the
+                = succeed "?" do
+                  %a{:href => "./ral.html"} last chapter
+              %p
+                In a text editor —
+                = succeed "," do
+                  %code vim
+                = succeed "," do
+                  %code emacs
+                %code nano
+                — create a file with the following contents and filename:
+              .highlight
+                %pre
+                  %code.ruby
+                    %span.c1 # /root/examples/user-absent.pp
+                    %span.n user
+                    %span.p {
+                    %span.s1 'katie'
+                    %span.p :
+                    %span.k ensure
+                    %span.o =>
+                    %span.n absent
+                    %span.p ,
+                    %span.p }
+              %p Save and close the editor, then run:
+              %pre
+                %code
+                  :preserve
+                    # puppet apply /root/examples/user-absent.pp
+                    notice: /Stage[main]//User[katie]/ensure: removed
+                    notice: Finished catalog run in 0.07 seconds
+              %p Now run it again:
+              %pre
+                %code
+                  :preserve
+                    # puppet apply /root/examples/user-absent.pp
+                    notice: Finished catalog run in 0.03 seconds
+              %p Cool: You’ve just written and applied your first Puppet manifest.
+              %h2#manifests Manifests
+              %p
+                Puppet programs are called “manifests,” and they use the
+                %code .pp
+                file extension.
+              %p
+                The core of the Puppet language is the
+                %em resource declaration.
+                A resource declaration describes a
+                %em desired state
+                for one resource.
+              %p (Manifests can also use various kinds of logic: conditional statements, collections of resources, functions to generate text, etc. We’ll get to these later.)
+              %h2#puppet-apply Puppet Apply
+              %p
+                Like
+                %code resource
+                in the last chapter,
+                %code apply
+                is a Puppet subcommand. It takes the name of a manifest file as its argument, and enforces the desired state described in the manifest.
+              %p We’ll use it below to test small manifests, but it can be used for larger jobs too. In fact, it can do nearly everything an agent/master Puppet environment can do.
+              %h2#resource-declarations Resource Declarations
+              %p Let’s start by looking at a single resource:
+              .highlight
+                %pre
+                  %code.ruby
+                    %span.c1 # /root/examples/file-1.pp
+                    %span.n file
+                    %span.p {
+                    %span.s1 'testfile'
+                    %span.p :
+                    %span.n path
+                    %span.o =>
+                    %span.s1 '/tmp/testfile'
+                    %span.p ,
+                    %span.k ensure
+                    %span.o =>
+                    %span.n present
+                    %span.p ,
+                    %span.n mode
+                    %span.o =>
+                    %span.mo 0640
+                    %span.p ,
+                    %span.n content
+                    %span.o =>
+                    %span.s2 "I'm a test file."
+                    %span.p ,
+                    %span.p }
+              %p
+                %a{:href => "/puppet/latest/reference/lang_resources.html"}> The complete syntax and behavior of resource declarations are documented in the Puppet reference manual
+                , but in short, they consist of:
+              %ul
+                %li
+                  The
+                  %strong type
+                  (
+                  %code> file
+                  , in this case)
+                %li
+                  An opening curly brace (
+                  %code> {
+                  )
+                  %ul
+                    %li
+                      The
+                      %strong title
+                      (
+                      %code> testfile
+                      )
+                    %li
+                      A colon (
+                      %code> :
+                      )
+                    %li
+                      A set of
+                      %strong
+                        attribute
+                        %code =>
+                        value
+                      pairs, with a comma after each pair (
+                      %code path => '/tmp/testfile',
+                      etc.)
+                %li
+                  A closing curly brace (
+                  %code> }
+                  )
+              %p Try applying the short manifest above:
+              %pre
+                %code
+                  :preserve
+                    # puppet apply /root/examples/file-1.pp
+                    notice: /Stage[main]//File[testfile]/ensure: created
+                    notice: Finished catalog run in 0.05 seconds
+              %p This is just the reverse of what we saw above when we removed the user account: Puppet noticed that the file didn’t exist, and created it. It set the desired content and mode at the same time.
+              %pre
+                %code
+                  :preserve
+                    # cat /tmp/testfile
+                    I'm a test file.
+                    # ls -lah /tmp/testfile
+                    -rw-r----- 1 root root 16 Feb 23 13:15 /tmp/testfile
+              %p If we try changing the mode and applying the manifest again, Puppet will fix it:
+              %pre
+                %code
+                  :preserve
+                    # chmod 0666 /tmp/testfile
+                    # puppet apply /root/examples/file-1.pp
+                    notice: /Stage[main]//File[testfile]/mode: mode changed '0666' to '0640'
+                    notice: Finished catalog run in 0.04 seconds
+              %p And if you run the manifest again, you’ll see that Puppet doesn’t do anything — if a resource is in the desired state already, Puppet will leave it alone.
+              %blockquote
+                %p
+                  %strong Exercise:
+                  Declare another file resource in a manifest and apply it. Try setting a new desired state for an existing file — for example, changing the login message by setting the content of
+                  = succeed "." do
+                    %code /etc/motd
+                  %a{:href => "/references/latest/type.html#file"} see the attributes available for the file type here.
+              %h3#syntax-hints Syntax Hints
+              %p Watch out for these common errors:
+              %ul
+                %li
+                  Don’t forget commas and colons! Forgetting them causes errors like
+                  = succeed "." do
+                    %code Could not parse for environment production: Syntax error at 'mode'; expected '}' at /root/manifests/1.file.pp:6 on node learn.localdomain
+                %li Capitalization matters! The resource type and the attribute names should always be lowercase.
+                %li
+                  The values used for titles and attribute values will usually be
+                  = succeed "," do
+                    %a{:href => "/puppet/latest/reference/lang_datatypes.html#strings"} strings
+                  %a{:href => "/puppet/latest/reference/lang_datatypes.html"} Read more about Puppet’s data types here.
+                  %ul
+                    %li
+                      There are two kinds of quotes in Puppet: single (
+                      %code> '
+                      ) and double (
+                      %code> "
+                      ). The main difference is that double quotes let you interpolate $variables, which we cover in another lesson.
+                    %li
+                      Attribute names (like
+                      = succeed "," do
+                        %code path
+                      = succeed "," do
+                        %code ensure
+              %p
+                Also, note that Puppet lets you use whatever whitespace makes your manifests more readable. We suggest visually lining up the
+                %code =>
+                arrows, because it makes it easier to understand a manifest at a glance. (The Vim plugins on the Learning Puppet VM will do this automatically as you type.)
+              %h2#once-more-with-feeling Once More, With Feeling!
+              %p Now that you know resource declarations, let’s play with the file type some more. We’ll:
+              %ul
+                %li Put multiple resources of different types in the same manifest
+                %li
+                  Use new values for the
+                  %code ensure
+                  attribute
+                %li Find an attribute with a special relationship to the resource title
+                %li See what happens when we leave off certain attributes
+                %li See some automatic permission adjustments on directories
+              .highlight
+                %pre
+                  %code.ruby
+                    %span.c1 # /root/examples/file-2.pp
+                    %span.n file
+                    %span.p {
+                    %span.s1 '/tmp/test1'
+                    %span.p :
+                    %span.k ensure
+                    %span.o =>
+                    %span.n file
+                    %span.p ,
+                    %span.n content
+                    %span.o =>
+                    %span.s2 "Hi.
+                    %span.se \n
+                    %span.s2 "
+                    %span.p ,
+                    %span.p }
+                    %span.n file
+                    %span.p {
+                    %span.s1 '/tmp/test2'
+                    %span.p :
+                    %span.k ensure
+                    %span.o =>
+                    %span.n directory
+                    %span.p ,
+                    %span.n mode
+                    %span.o =>
+                    %span.mo 0644
+                    %span.p ,
+                    %span.p }
+                    %span.n file
+                    %span.p {
+                    %span.s1 '/tmp/test3'
+                    %span.p :
+                    %span.k ensure
+                    %span.o =>
+                    %span.n link
+                    %span.p ,
+                    %span.n target
+                    %span.o =>
+                    %span.s1 '/tmp/test1'
+                    %span.p ,
+                    %span.p }
+                    %span.n user
+                    %span.p {
+                    %span.s1 'katie'
+                    %span.p :
+                    %span.k ensure
+                    %span.o =>
+                    %span.n absent
+                    %span.p ,
+                    %span.p }
+                    %span.n notify
+                    %span.p {
+                    %span.s2 "I'm notifying you."
+                    %span.p :}
+                    %span.n notify
+                    %span.p {
+                    %span.s2 "So am I!"
+                    %span.p :}
+              %p Apply:
+              %pre
+                %code
+                  :preserve
+                    # puppet apply /root/examples/file-2.pp
+                    notice: /Stage[main]//File[/tmp/test1]/ensure: created
+                    notice: /Stage[main]//File[/tmp/test3]/ensure: created
+                    notice: /Stage[main]//File[/tmp/test2]/ensure: created
+                    notice: So am I!
+                    notice: /Stage[main]//Notify[So am I!]/message: defined 'message' as 'So am I!'
+                    notice: I'm notifying you.
+                    notice: /Stage[main]//Notify[I'm notifying you.]/message: defined 'message' as 'I'm notifying you.'
+                    notice: Finished catalog run in 0.05 seconds
+              %p Cool. What just happened?
+              %h3#new-ensure-values-different-states New Ensure Values, Different States
+              %p
+                The
+                %code ensure
+                attribute is somewhat special. It’s available on most (but not all) resource types, and it controls whether the resource exists, with the definition of “exists” being somewhat local.
+              %p With files, there are several ways to exist:
+              %ul
+                %li
+                  As a normal file (
+                  %code> ensure => file
+                  )
+                %li
+                  As a directory (
+                  %code> ensure => directory
+                  )
+                %li
+                  As a symlink (
+                  %code> ensure => link
+                  )
+                %li
+                  As any of the above (
+                  %code> ensure => present
+                  )
+                %li
+                  As nothing (
+                  %code> ensure => absent
+                  ).
+              %p A quick check shows how our manifest played out:
+              %pre
+                %code
+                  :preserve
+                    # ls -lah /tmp/test*
+                    -rw-r--r--  1 root root    3 Feb 23 15:54 test1
+                    lrwxrwxrwx  1 root root   10 Feb 23 15:54 test3 -> /tmp/test1
+                    
+                    /tmp/test2:
+                    total 16K
+                    drwxr-xr-x 2 root root 4.0K Feb 23 16:02 .
+                    drwxrwxrwt 5 root root 4.0K Feb 23 16:02 ..
+                    
+                    # cat /tmp/test3
+                    Hi.
+              %h3#titles-and-namevars Titles and Namevars
+              %p
+                Notice how our original file resource had a
+                %code path
+                attribute, but our next three left it out?
+              %p
+                Almost every resource type has one attribute whose value defaults to the resource’s title. For the
+                %code file
+                resource, that’s
+                = succeed "." do
+                  %code path
+                = succeed "," do
+                  %code user
+                = succeed "," do
+                  %code group
+                = succeed "\u{2026})," do
+                  %code package
+                = succeed "." do
+                  %code name
+              %p
+                These attributes are called
+                %strong “namevars.”
+                They are generally the attribute that corresponds to the resource’s
+                %em identity,
+                the one thing that should always be unique.
+              %p
+                If you leave out the namevar for a resource, Puppet will re-use the title as its value. If you
+                %em do
+                specify a value for the namevar, the title of the resource can be anything.
+              %blockquote
+                %h4#identity-and-identity Identity and Identity
+                %p So why even have a namevar, if Puppet can just re-use the title?
+                %p There are two kinds of identity that Puppet recognizes:
+                %ul
+                  %li Identity within Puppet itself
+                  %li Identity on the target system
+                %p
+                  Most of the time these are the same, but sometimes they aren’t. For example, the NTP service has a different name on different platforms: on Red Hat-like systems, it’s called
+                  = succeed "," do
+                    %code ntpd
+                  = succeed "." do
+                    %code ntp
+                %p Also, there are cases (usually exec resources) where the system identity has no particular meaning, and putting a more descriptive identity in the title can help tell your colleagues (or yourself in two months) what a resource is supposed to be doing.
+                %p By allowing you to split the title and namevar, Puppet makes it easy to handle these cases. We’ll cover this later when we get to conditional statements.
+                %h4#uniqueness Uniqueness
+                %p
+                  Note that you can’t declare the same resource twice: Puppet always disallows duplicate
+                  %em titles
+                  within a given type, and usually disallows duplicate
+                  %em namevar values
+                  within a type.
+                %p This is because resource declarations represent desired final states, and it’s not at all clear what should happen if you declare two conflicting states. So Puppet will fail with an error instead of accidentally doing something wrong to the system.
+              %h3#missing-attributes-desired-state--whatever Missing Attributes: “Desired State = Whatever”
+              %p
+                On the
+                %code /tmp/test1
+                file, we left off the
+                %code mode
+                and
+                %code owner
+                attributes, among others. When we omit attributes, Puppet doesn’t manage them, and any value is assumed to be the desired state.
+              %p If a file doesn’t exist, Puppet will default to creating it with permissions mode 0644, but if you change that mode, Puppet won’t change it back.
+              %p
+                Note that you can even leave off the
+                %code ensure
+                attribute, as long as you don’t specify
+                %code content
+                or
+                %code source
+                — this can let you manage the permissions of a file if it exists, but not create it if it doesn’t.
+              %h3#directory-permissions-644--755 Directory Permissions: 644 = 755
+              %p
+                We said
+                %code /tmp/test2/
+                should have permissions mode 0644, but our
+                %code ls -lah
+                showed mode 0755. That’s because Puppet groups the read and traverse permissions for directories.
+              %blockquote
+                %p
+                  %strong Details:
+                  With directories, the 4 bit controls whether someone can
+                  %em list
+                  the directory and the 1 bit controls whether they can
+                  %em access any files
+                  it contains.
+                %p
+                  Most of the time, you want these abilities to be grouped together. However, when recursively managing directories with the
+                  %code recurse
+                  attribute, you wouldn’t want to set all permissions to 0755, because any plain files contained by the directory would become executable! And if Puppet didn’t automatically adjust directory permissions, recursively setting permissions of 0644 would make the files in a directory inaccessible to users who should be able to access them.
+                %p By automatically grouping those permissions, it becomes much easier to set a directory’s permissions to match the permissions of the files it contains.
+              %h2#destinations-not-journeys Destinations, Not Journeys
+              %p You’ve noticed that we talk about “desired states” a lot, instead of talking about making changes to the system. This is the core of thinking like a Puppet user.
+              %p
+                If you were writing an explanation to another human of how to put a system into a desired state, using the OS’s default tools, it would read something like “Check whether the mode of the sudoers file is 0440, using
+                = succeed "." do
+                  %code ls -l
+                = succeed ".\u{201d}" do
+                  %code chmod 0440 /etc/sudoers
+              %p Under the hood, Puppet is actually doing the same thing, with some of the same OS tools. But it wraps the “check” step together with the “and fix if needed” step, and presents them as a single interface.
+              %p The effect is that, instead of writing a bash script that looks like a step-by-step for a beginning user, you can write Puppet manifests that look like shorthand notes for an expert user.
+              %blockquote
+                %h2#aside-compilation Aside: Compilation
+                %p Manifests don’t get used directly when Puppet syncs resources. Instead, the flow of a Puppet run goes a little like this:
+                %p
+                  %img{:alt => "Diagram: Manifests are compiled into a catalog, which is then applied to yield the desired system state.", :src => "./images/manifest_to_defined_state_unified.png"}/
+                %p
+                  As we mentioned above, manifests can contain conditional statements, variables, functions, and other forms of logic. But before being applied, manifests get
+                  %em compiled
+                  into a document called a
+                  %strong “catalog,”
+                  which
+                  %em only
+                  contains resources and hints about the order to sync them in.
+                %p With puppet apply, the distinction doesn’t mean much. In a master/agent Puppet environment, though, it matters more, because agents only see the catalog:
+                %ul
+                  %li
+                    By using logic, manifests can be flexible and describe many systems at once. A catalog describes desired states for
+                    %strong one
+                    system.
+                  %li By default, agent nodes can only retrieve their own catalog; they can’t see information meant for any other node. This separation improves security.
+                  %li
+                    Since catalogs are so unambiguous, it’s possible to
+                    %em simulate
+                    a catalog run without making any changes to the system. (This is usually done by running
+                    = succeed ".)" do
+                      %code puppet agent --test --noop
+              %h2#the-site-manifest-and-puppet-agent The Site Manifest and Puppet Agent
+              %p We’ve seen how to use puppet apply to directly apply manifests on one system. The puppet master/agent services work very similarly, but with a few key differences:
+              %p
+                %strong Puppet apply:
+              %ul
+                %li A user executes a command, triggering a Puppet run.
+                %li Puppet apply reads the manifest passed to it, compiles it into a catalog, and applies the catalog.
+              %p
+                %strong Puppet agent/master:
+              %ul
+                %li
+                  Puppet agent runs as a service, and triggers a Puppet run about every half hour (configurable).
+                  %ul
+                    %li
+                      On your VM, which runs Puppet Enterprise, the agent service is named
+                      = succeed "." do
+                        %code pe-puppet
+                %li
+                  Puppet agent does not have access to any manifests; instead, it requests a pre-compiled catalog from a puppet master server.
+                  %ul
+                    %li
+                      On your VM, the puppet master appears as the
+                      %code pe-httpd
+                      service. A sandboxed copy of Apache with Passenger manages the puppet master application, spawning and killing new copies of it as needed.
+                %li
+                  The puppet master always reads
+                  %strong one
+                  special manifest, called the “site manifest” or site.pp. It uses this to compile a catalog, which it sends back to the agent.
+                  %ul
+                    %li
+                      On your VM, the site manifest is at
+                      = succeed "." do
+                        %code /etc/puppetlabs/puppet/manifests/site.pp
+                %li After getting the catalog, the agent applies it.
+              %p This way, you can have many machines being configured by Puppet, while only maintaining your manifests on one (or a few) servers. This also gives some extra security, as described above under “Compilation.”
+              %blockquote
+                %h3#exercise-use-puppet-agentmaster-to-apply-the-same-configuration Exercise: Use Puppet Agent/Master to Apply the Same Configuration
+                %p To see how the same manifest code works in puppet agent:
+                %ul
+                  %li
+                    Edit
+                    %code /etc/puppetlabs/puppet/manifests/site.pp
+                    and paste in the three file resources from the manifest above.
+                    %ul
+                      %li
+                        Watch out for some of the existing code in site.pp, and don’t disturb any
+                        %code node
+                        statements yet. You can paste the resources at the bottom of the file and they’ll work fine.
+                  %li
+                    Delete or mutilate the files and directories we created in
+                    = succeed "." do
+                      %code /tmp
+                  %li
+                    Run
+                    = succeed "," do
+                      %code puppet agent --test
+                  %li
+                    Check
+                    = succeed "," do
+                      %code /tmp
+              %blockquote
+                %h3#exercise-ssh-authorized-key Exercise: SSH Authorized Key
+                %p
+                  Write and apply a manifest that uses the
+                  %a{:href => "/references/stable/type.html#sshauthorizedkey"}
+                    %code ssh_authorized_key
+                    type
+                  to let you log into the learning VM as root without a password.
+                %p
+                  %strong Bonus work:
+                  Try putting it directly into the site manifest, instead of using puppet apply.
+                  = succeed "," do
+                    %a{:href => "/pe/latest/orchestration_puppet.html"} Use the console to trigger a puppet agent run
+                  %a{:href => "/pe/latest/console_reports.html"} check the reports in the console
+                  to see whether the manifest worked.
+                %ul
+                  %li You’ll need to have an SSH key pair, a terminal application on your host system, and some basic understanding of how SSH works. You can get all of these with a little outside research.
+                  %li
+                    Watch out: you can’t just paste the line from
+                    %code id_rsa.pub
+                    into the
+                    %code key
+                    attribute of the resource. You’ll need to separate its components out into multiple attributes. Read the documentation for the
+                    %code ssh_authorized_key
+                    type to see how.
+              %h2#next Next
+              %p
+                %strong Next Lesson:
+              %p
+                You know how to use the fundamental building blocks of Puppet code, so now it’s time to learn
+                = succeed "." do
+                  %a{:href => "./ordering.html"} how those blocks fit together
+              %p
+                %strong Off-Road:
+              %p You already know how to do a bit with Puppet, and managing file ownership and permissions is important.
+              %p
+                Are there any files on your systems that you’ve had a hard time keeping in sync? You already know enough to lock them down.
+                = succeed "," do
+                  %a{:href => "http://info.puppetlabs.com/download-pe.html"} Download Puppet Enterprise for free
+                %a{:href => "/pe/latest/quick_start.html"} the quick start guide
+                to get a small environment installed, then try putting some file resources at the bottom of the puppet master’s
+                %code site.pp
+                file to manage those files on every machine.
+
+              %a.js-page-marker-bottom{ rel: 'Manifests' }
+
+
 
         .spacer
 
