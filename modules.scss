@@ -6,29 +6,45 @@
 
 .outline {
   background: #fff;
-  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
 }
 
 .outline__row {
-  @include transition(all .07s ease-in-out);
+  @include transition(left .07s ease-in-out);
+  @include transition(opaicty .07s ease-in-out);
+  @include transition(padding .4s ease-in-out);
   @extend %text-small;
-  border-bottom: 1px solid #ddd;
   opacity: 0;
-  padding: 10px;
+  padding: 3px 10px;
   position: relative;
   left: -50px;
   
   &.visible {
     opacity: 1;
-    left: 0;
+    left: 1px;
   }
   
+  &.is-active {
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #fff;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 3px 1px rgba(0, 0, 0, .04);
+    padding: 10px 10px;
+
+    a {
+      @extend %text-active;
+      color: $primary !important;
+    }
+  }
+
   &:hover {
     background: rgba(0, 0, 0, .02);
   }
 
   i.fa.fa-chevron-right {
     @include transition(all .2s ease-in-out);
+    color: #aaa;
+    cursor: pointer;
     font-size: 9px;
     position: relative;
     top: -2px;
@@ -37,21 +53,18 @@
   a {
     transition: none;
     @extend %text-small;
-    
-    &.is-active {
-      @extend %text-active;
-    }
+    color: #999 !important;
   }
 
   & + ul .outline__row {
-    padding-left: 30px;
+    padding-left: 42px;
   }
 
   & + ul {
     display: none;
   }
 
-  &.is-active {
+  &.is-expanded {
     i.fa.fa-chevron-right {
       transform: rotate(90deg);
     }
@@ -59,12 +72,6 @@
 }
 
 .outline__row--header {
-  background: #f4f4f4;
-  cursor: pointer;
-  
-  &:hover {
-    background: rgba( 0, 0, 0, .06);
-  }
 }
 
 .progress-bar {

@@ -68,7 +68,7 @@ $( function () {
 
 
   $('.js-expand').click( function() {
-    $(this).toggleClass('is-active');
+    $(this).toggleClass('is-expanded');
     $(this).next('ul').slideToggle(500, 'easeInOutQuint');  
   });
 
@@ -88,8 +88,8 @@ $( function () {
 });
 
 var markOutline = function(section) {
-  $('.outline a.is-active').removeClass('is-active');
-  $('.outline a[rel="' + section + '"]').addClass('is-active');
+  $('.outline__row').removeClass('is-active');
+  $('.outline a[rel="' + section + '"]').parent('.outline__row').addClass('is-active');
 }
 
 var setUpLabel = function(section) {

@@ -230,43 +230,53 @@ p {
 
 .outline {
   background: #fff;
-  border-top: 1px solid #ddd; }
+  border-right: 1px solid #ddd; }
 
 .outline__row {
-  -webkit-transition: all 0.07s ease-in-out;
-  -moz-transition: all 0.07s ease-in-out;
-  transition: all 0.07s ease-in-out;
-  border-bottom: 1px solid #ddd;
+  -webkit-transition: left 0.07s ease-in-out;
+  -moz-transition: left 0.07s ease-in-out;
+  transition: left 0.07s ease-in-out;
+  -webkit-transition: opaicty 0.07s ease-in-out;
+  -moz-transition: opaicty 0.07s ease-in-out;
+  transition: opaicty 0.07s ease-in-out;
+  -webkit-transition: padding 0.4s ease-in-out;
+  -moz-transition: padding 0.4s ease-in-out;
+  transition: padding 0.4s ease-in-out;
   opacity: 0;
-  padding: 10px;
+  padding: 3px 10px;
   position: relative;
   left: -50px; }
   .outline__row.visible {
     opacity: 1;
-    left: 0; }
+    left: 1px; }
+  .outline__row.is-active {
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #fff;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 3px 1px rgba(0, 0, 0, 0.04);
+    padding: 10px 10px; }
+    .outline__row.is-active a {
+      color: #30be92 !important; }
   .outline__row:hover {
     background: rgba(0, 0, 0, 0.02); }
   .outline__row i.fa.fa-chevron-right {
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
+    color: #aaa;
+    cursor: pointer;
     font-size: 9px;
     position: relative;
     top: -2px; }
   .outline__row a {
-    transition: none; }
+    transition: none;
+    color: #999 !important; }
   .outline__row + ul .outline__row {
-    padding-left: 30px; }
+    padding-left: 42px; }
   .outline__row + ul {
     display: none; }
-  .outline__row.is-active i.fa.fa-chevron-right {
+  .outline__row.is-expanded i.fa.fa-chevron-right {
     transform: rotate(90deg); }
-
-.outline__row--header {
-  background: #f4f4f4;
-  cursor: pointer; }
-  .outline__row--header:hover {
-    background: rgba(0, 0, 0, 0.06); }
 
 .progress-bar {
   background: #30be92;
@@ -305,7 +315,7 @@ p {
   font-size: 14px;
   font-weight: 400; }
 
-.outline__row a.is-active, .module a {
+.outline__row.is-active a, .module a {
   color: #30be92;
   font-weight: 600; }
 
