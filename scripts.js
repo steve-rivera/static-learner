@@ -35,6 +35,36 @@ $( function () {
     offset: 120
   });
 
+  $('.js-track-progress').waypoint( function(direction) {
+
+    if ( direction == 'down') {
+      section = $(this.element);
+    } else {
+      section = $(this.element).prev('.js-track-progress');
+    }
+
+    if ( section.height() != null ) {
+
+      sectionTop = section.position().top;
+      sectionHeight = section.height();
+
+      $(window).scroll( function() {
+
+        currentPoint = $(this).scrollTop();
+        
+        progress = 0;
+
+        if ( currentPoint >= sectionTop ) {
+          progress = (currentPoint - sectionTop) / sectionHeight * 100;
+        } else {
+          progress = 0;
+        }
+
+        $('.js-progress-bar').css('width', progress + '%');
+      });
+    }
+  });
+
 
 
   $('.js-expand').click( function() {
@@ -53,28 +83,6 @@ $( function () {
 
     time += 80;
   });
-
-  $(window).scroll( function() {
-
-    currentPoint = $(this).scrollTop();
-
-    $('.js-track-progress').each( function(i) {
-      sectionTop = $(this).position().top;
-      sectionHeight = $(this).height();
-      sectionBottom = sectionTop + sectionHeight;
-      
-      progress = 0;
-
-      if ( currentPoint >= sectionTop ) {
-        progress = (currentPoint - sectionTop) / sectionHeight * 100;
-      } else {
-        progress = 0;
-      }
-
-      $('.js-progress-bar').css('width', progress + '%');
-    });
-
-  })
 
 
 });
