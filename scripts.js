@@ -1,6 +1,14 @@
 
 $( function () {
 
+  $('.outline a').click( function() {
+    sectionName = $(this).attr('rel');
+    scrollTo = $('a.js-page-marker-top[rel="' + sectionName + '"]' );
+    $('html, body').animate({
+      scrollTop: scrollTo.offset().top - 119
+    }, 850, 'easeInOutQuint');
+  });
+
   $('.js-stick').waypoint( function(direction) {
     $('.js-stick').toggleClass('is-stuck');
   }, {
@@ -63,13 +71,15 @@ $( function () {
         $('.js-progress-bar').css('width', progress + '%');
       });
     }
+  }, {
+    offset: 120
   });
 
 
 
   $('.js-expand').click( function() {
-    $(this).toggleClass('is-expanded');
-    $(this).next('ul').slideToggle(500, 'easeInOutQuint');  
+    $(this).parent().toggleClass('is-expanded');
+    $(this).parent().next('ul').slideToggle(500, 'easeInOutQuint');  
   });
 
   $('.js-expand').first().click();

@@ -366,6 +366,8 @@ p {
   font-weight: 600;
   margin-bottom: 5px;
   text-align: left; }
+.module .section h3:first-of-type {
+  margin-bottom: 36px; }
 .module h1 {
   color: #444;
   font-family: 'Source Sans Pro';
