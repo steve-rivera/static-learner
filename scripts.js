@@ -1,11 +1,35 @@
 
 $( function () {
 
+  $('.checkbox').click( function() {
+
+    checkbox1 = null;
+    checkbox2 = null;
+
+    if ( $(this).parent().hasClass('outline__row') ) {
+      checkbox1 = $(this);
+      sectionLabel = $(this).next('a').attr('rel');
+      section = $('a.js-page-marker-top[rel="' + sectionLabel + '"]').parent('.js-track-progress');
+      checkbox2 = section.find('.checkbox');
+    } else {
+      checkbox1 = $(this);
+      sectionLabel = $(this).parent().prev('.js-page-marker-bottom').attr('rel');
+      outlineRow = $('.outline a[rel="' + sectionLabel + '"]');
+      checkbox2 = outlineRow.parent().find('.checkbox');
+    }
+
+    if ( checkbox1 != null ) {
+      checkbox1.toggleClass('is-checked');
+      checkbox2.toggleClass('is-checked');
+    }
+
+  });
+
   $('.outline a').click( function() {
     sectionName = $(this).attr('rel');
     scrollTo = $('a.js-page-marker-top[rel="' + sectionName + '"]' );
     $('html, body').animate({
-      scrollTop: scrollTo.offset().top - 119
+      scrollTop: scrollTo.offset().top - 118
     }, 850, 'easeInOutQuint');
   });
 
@@ -54,7 +78,7 @@ $( function () {
     if ( section.height() != null ) {
 
       sectionTop = section.position().top;
-      sectionHeight = section.height();
+      sectionHeight = section.height() - 350;
 
       $(window).scroll( function() {
 

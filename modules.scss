@@ -1,6 +1,6 @@
 
 .checkbox {
-  @include transition(all .1s ease-in-out);
+  @include transition(border .1s ease-in-out);
   background: #fff;
   border: 1px solid #bbb;
   -webkit-border-radius: 2px;
@@ -13,6 +13,11 @@
   
   &:hover {
     border-color: #888;
+  }
+
+  &.is-checked {
+    background: url(check.png) center center no-repeat #fff;
+    background-size: 8px 8px;
   }
 }
 
@@ -55,6 +60,10 @@
 
     .checkbox {
       border: 1px solid $primary;
+      
+      &.is-checked {
+        background-image: url(check-green.png);
+      }
     }
 
     a {
@@ -76,8 +85,6 @@
     top: -2px;
   }
 
-
-  
   a {
     transition: none;
     @extend %text-small;
@@ -142,7 +149,7 @@
 }
 
 .section-end {
-  background: lighten($primary, 50%);
+  background: #fafafa;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   margin: 90px 0 100px -7%;
@@ -150,12 +157,21 @@
   position: relative;
   width: 114%;
   
+  .checkbox {
+    height: 50px;
+    width: 50px;
+    
+    &.is-checked {
+      background-size: 38px 38px;
+    }
+  }
+  
   span {
     display: inline-block;
-    font-size: 20px;
-    font-weight: 300;
+    font-size: 18px;
+    font-weight: 400;
     position: relative;
-    top: -15px;
+    top: -20px;
   }
 }
 
