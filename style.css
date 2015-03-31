@@ -92,6 +92,14 @@ p {
   p:last-child {
     margin-bottom: 0; }
 
+.l-bottom-bar {
+  bottom: 0;
+  height: 50px;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 700; }
+
 .l-content-wrapper {
   box-sizing: border-box;
   padding: 0 300px;
@@ -124,12 +132,18 @@ p {
   z-index: 500; }
 
 .l-leftbar {
-  position: absolute;
+  background: #f6f6f6;
+  border-right: 1px solid #eee;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 100%;
+  left: 0;
+  padding-top: 20px;
+  position: fixed;
+  top: 60px;
   width: 250px;
   z-index: 400; }
-  .l-leftbar.is-stuck {
-    position: fixed;
-    top: 120px; }
 
 .l-metabar {
   box-sizing: border-box;
@@ -224,6 +238,10 @@ p {
 .l-mts {
   margin-top: 10px; }
 
+.bottom-bar {
+  background: rgba(255, 255, 255, 0.95);
+  border-top: 1px solid #ddd; }
+
 .checkbox {
   -webkit-transition: border 0.1s ease-in-out;
   -moz-transition: border 0.1s ease-in-out;
@@ -242,15 +260,15 @@ p {
   .checkbox.is-checked {
     background: url(check.png) center center no-repeat white;
     background-size: 8px 8px; }
+  .checkbox.skipped {
+    background: #c9f1e5;
+    border: 1px solid #30be92;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
 
 .metabar {
   background: rgba(255, 255, 255, 0.95);
   border-bottom: 1px solid #ddd;
   border-top: 3px solid #444; }
-
-.outline {
-  background: #fff;
-  border-right: 1px solid #ddd; }
 
 .outline__row {
   -webkit-transition: left 0.07s ease-in-out;
@@ -270,10 +288,10 @@ p {
     opacity: 1;
     left: 1px; }
   .outline__row.is-active {
-    border-bottom: 1px solid #ddd;
+    background: #FFF;
+    border-bottom: 1px solid #eee;
     border-right: 1px solid #fff;
-    border-top: 1px solid #ddd;
-    box-shadow: 0 3px 1px rgba(0, 0, 0, 0.04);
+    border-top: 1px solid #eee;
     padding: 10px 10px; }
     .outline__row.is-active i {
       color: #30be92 !important; }
@@ -335,28 +353,51 @@ p {
 
 .section-end {
   background: #fafafa;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  margin: 90px 0 100px -7%;
-  padding: 64px;
+  margin: 90px 0 100px;
   position: relative;
-  width: 114%; }
+  width: 100%; }
+  .section-end h3 {
+    border-bottom: 2px solid #ddd;
+    font-family: 'Source Sans Pro' !important;
+    margin-bottom: 30px !important;
+    padding: 10px 20px; }
+    .section-end h3 span {
+      font-weight: 200;
+      float: right; }
+  .section-end .section-end-content {
+    padding: 10px 20px; }
   .section-end .checkbox {
-    height: 50px;
-    width: 50px; }
+    height: 25px;
+    width: 25px; }
     .section-end .checkbox.is-checked {
       background-size: 38px 38px; }
-  .section-end span {
+  .section-end p.finished {
     display: inline-block;
+    font-family: 'Source Sans Pro' !important;
     font-size: 18px;
     font-weight: 400;
     position: relative;
-    top: -20px; }
+    top: -6px; }
+  .section-end .additional {
+    border-top: 2px solid #ddd;
+    padding: 30px 0; }
+    .section-end .additional img {
+      float: left; }
+    .section-end .additional p {
+      font-family: 'Source Sans Pro' !important;
+      font-weight: 400 !important;
+      float: left;
+      margin-left: 20px;
+      width: 500px; }
 
-.outline__row, .outline__row a {
+.outline__row, .outline__row a, .text--small {
   color: #444;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400; }
+
+.text--light {
+  color: #888;
+  font-weight: 300; }
 
 .outline__row.is-active a, .module a {
   color: #30be92;
@@ -375,11 +416,49 @@ p {
   .module a:hover {
     color: #269573; }
 .module aside, .module blockquote {
-  background: #fafafa;
-  border: 1px solid #ddd;
+  background: #fff;
+  border: 2px solid #30be92;
   border-radius: 2px;
-  margin-bottom: 36px;
-  padding: 18px; }
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0 auto 36px auto;
+  padding: 3%;
+  position: relative;
+  width: 90%; }
+  .module aside h1, .module aside h2, .module aside h3, .module aside h4, .module aside h5, .module blockquote h1, .module blockquote h2, .module blockquote h3, .module blockquote h4, .module blockquote h5 {
+    color: #30be92;
+    font-family: 'Source Sans Pro'; }
+  .module aside h1:first-child,
+  .module aside h2:first-child,
+  .module aside h3:first-child,
+  .module aside h4:first-child,
+  .module aside h5:first-child, .module blockquote h1:first-child,
+  .module blockquote h2:first-child,
+  .module blockquote h3:first-child,
+  .module blockquote h4:first-child,
+  .module blockquote h5:first-child {
+    border-bottom: 2px solid #30be92;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    left: -4%;
+    margin-bottom: 12px;
+    padding: 0 4% 10px 4%;
+    position: relative;
+    top: -8px;
+    width: 108%; }
+  .module aside p, .module aside li, .module blockquote p, .module blockquote li {
+    color: #666;
+    font-family: 'Source Sans Pro';
+    font-weight: 400;
+    font-size: 18px; }
+  .module aside p, .module blockquote p {
+    margin-bottom: 18px; }
+  .module aside p + ul, .module aside p + ol, .module blockquote p + ul, .module blockquote p + ol {
+    margin-top: -8px; }
+  .module aside ul, .module aside ol, .module blockquote ul, .module blockquote ol {
+    margin-bottom: 18px; }
   .module aside p:last-child,
   .module aside li:last-child,
   .module aside ul:last-child,
@@ -392,42 +471,44 @@ p {
   color: #444;
   font-family: 'Source Sans Pro';
   font-size: 58px;
-  font-weight: 600;
+  font-weight: 100;
   margin-bottom: 100px;
-  text-align: center; }
+  text-align: left; }
 .module h2.big {
   color: #444;
   font-family: 'Source Sans Pro';
-  font-size: 38px;
-  font-weight: 600;
+  font-size: 44px;
+  font-weight: 300;
   margin-bottom: 100px;
-  text-align: center; }
+  text-align: left; }
 .module h3.big {
+  border-bottom: 2px solid #444;
   color: #444;
   font-family: 'Source Sans Pro';
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 5px;
+  padding-bottom: 5px;
   text-align: left; }
 .module .section h3:first-of-type {
-  margin-bottom: 36px; }
+  margin-bottom: 60px; }
 .module h1 {
   color: #444;
-  font-family: 'Source Sans Pro';
+  font-family: 'Merriweather';
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 5px;
   text-align: left; }
 .module h2 {
   color: #444;
-  font-family: 'Source Sans Pro';
+  font-family: 'Merriweather';
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 5px;
   text-align: left; }
 .module h3, .module h4, .module h5 {
   color: #444;
-  font-family: 'Source Sans Pro';
+  font-family: 'Merriweather';
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 5px;
@@ -438,7 +519,7 @@ p {
   font-size: 18px;
   font-weight: 200;
   line-height: 1.6;
-  margin-bottom: 36px;
+  margin-bottom: 30px;
   text-align: left;
   word-wrap: break-word;
   /* IE 5+ */ }
@@ -447,7 +528,7 @@ p {
 .module pre {
   background: #eee;
   border-radius: 2px;
-  margin-bottom: 36px;
+  margin-bottom: 30px;
   padding: 18px;
   white-space: pre;
   /* CSS 2.0 */
@@ -475,7 +556,7 @@ p {
     top: 0; }
 .module ul, .module ol {
   padding-left: 36px;
-  margin-bottom: 36px; }
+  margin-bottom: 30px; }
 .module li {
   color: #444;
   font-family: 'Merriweather';

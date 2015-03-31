@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:100,200,300,400,500,600' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,700,900,900italic,700italic,400italic,300italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
     <link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
@@ -29,73 +29,73 @@
       </div>
       <div class='progress-bar js-progress-bar'></div>
     </header>
+    <div class='l-leftbar left-bar'>
+      <ul class='outline'>
+        <li>
+          <div class='outline__row outline__row--header'>
+            <i class='fa fa-chevron-right js-expand'></i>
+            <div class='checkbox'></div>
+            <a rel='Serverless Puppet'>
+              Serverless Puppet
+            </a>
+          </div>
+          <ul>
+            <li>
+              <div class='outline__row'>
+                <div class='checkbox'></div>
+                <a rel='Resources and the RAL'>
+                  Resources and the RAL
+                </a>
+              </div>
+            </li>
+            <li>
+              <div class='outline__row'>
+                <div class='checkbox'></div>
+                <a rel='Manifests'>
+                  Manifests
+                </a>
+              </div>
+            </li>
+            <li>
+              <div class='outline__row'>
+                <div class='checkbox'></div>
+                <a rel='Ordering'>
+                  Ordering
+                </a>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <div class='outline__row outline__row--header'>
+            <i class='fa fa-chevron-right js-expand'></i>
+            <div class='checkbox'></div>
+            <a rel='Master/Agent Puppet'>
+              Master/Agent Puppet
+            </a>
+          </div>
+          <ul>
+            <li>
+              <div class='outline__row'>
+                <div class='checkbox'></div>
+                <a rel='Agent Master Basic'>
+                  Agent Master Basic
+                </a>
+              </div>
+            </li>
+            <li>
+              <div class='outline__row'>
+                <div class='checkbox'></div>
+                <a rel='Agent Prep'>
+                  Agent Prep
+                </a>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
     <main>
-      <div class='l-leftbar js-stick'>
-        <ul class='outline'>
-          <li>
-            <div class='outline__row outline__row--header'>
-              <i class='fa fa-chevron-right js-expand'></i>
-              <div class='checkbox'></div>
-              <a rel='Serverless Puppet'>
-                Serverless Puppet
-              </a>
-            </div>
-            <ul>
-              <li>
-                <div class='outline__row'>
-                  <div class='checkbox'></div>
-                  <a rel='Resources and the RAL'>
-                    Resources and the RAL
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div class='outline__row'>
-                  <div class='checkbox'></div>
-                  <a rel='Manifests'>
-                    Manifests
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div class='outline__row'>
-                  <div class='checkbox'></div>
-                  <a rel='Ordering'>
-                    Ordering
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <div class='outline__row outline__row--header'>
-              <i class='fa fa-chevron-right js-expand'></i>
-              <div class='checkbox'></div>
-              <a rel='Master/Agent Puppet'>
-                Master/Agent Puppet
-              </a>
-            </div>
-            <ul>
-              <li>
-                <div class='outline__row'>
-                  <div class='checkbox'></div>
-                  <a rel='Agent Master Basic'>
-                    Agent Master Basic
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div class='outline__row'>
-                  <div class='checkbox'></div>
-                  <a rel='Agent Prep'>
-                    Agent Prep
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
       <div class='l-content-wrapper js-waypoint'>
         <div class='module path l-content'>
           <a class='js-page-marker-top' rel=''></a>
@@ -415,8 +415,23 @@
               </p>
               <a class='js-page-marker-bottom' rel='Resources and the RAL'></a>
               <div class='section-end'>
-                <div class='checkbox'></div>
-                <span>I finished Resources and the RAL</span>
+                <h3>
+                  Resources and the RAL
+                  <span>Wrap Up</span>
+                </h3>
+                <div class='section-end-content'>
+                  <div class='checkbox js-checkbox' rel='Resources and the RAL'></div>
+                  <p class='finished'>I finished Resources and the RAL</p>
+                  <div class='additional'>
+                    <img height='40' src='' width='40'>
+                    <p>
+                      Now that you've finished Resources and the RAL, would you like to
+                      give feedback to the author?
+                    </p>
+                    <textarea></textarea>
+                    <button class='submit'></button>
+                  </div>
+                </div>
               </div>
             </div>
             <div class='section js-track-progress'>
@@ -956,11 +971,18 @@
             </div>
           </div>
         </div>
-        <div class='spacer'></div>
       </div>
-      <div class='l-rightbar'>
-        Notes section
-      </div>
+      <div class='l-rightbar'></div>
     </main>
+    <div class='bottom-bar l-bottom-bar'>
+      <div class='l-vertical-center'>
+        <img class='l-mrs l-mls' src='steve.png' width='32'>
+        <span class='text--small'>
+          Steve Rivera &middot; Learning Puppet &middot;
+          <span class='text--light'>Last Updated:</span>
+          Nov. 14, 2014
+        </span>
+      </div>
+    </div>
   </body>
 </html>

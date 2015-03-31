@@ -119,6 +119,28 @@ $( function () {
   });
 
 
+  $('.js-checkbox').waypoint( function(direction) {
+
+    var checkbox = $(this.element);
+
+    if (direction == 'down') {
+      if (checkbox.hasClass('is-checked')) {
+        
+      } else {
+        var section = checkbox.attr('rel');
+        checkbox.addClass('skipped');
+        $('.outline a[rel="' + section + '"]').parent('.outline__row').find('.checkbox').addClass('skipped');
+      }
+    } else {
+        var section = checkbox.attr('rel');
+        checkbox.removeClass('skipped');
+        $('.outline a[rel="' + section + '"]').parent('.outline__row').find('.checkbox').removeClass('skipped');      
+    }
+
+
+  });
+
+
 });
 
 var markOutline = function(section) {

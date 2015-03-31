@@ -3,7 +3,7 @@
 %html
 
   %head
-    %link{ href: 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600', rel:'stylesheet', type: 'text/css' }
+    %link{ href: 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:100,200,300,400,500,600', rel:'stylesheet', type: 'text/css' }
     %link{ href: 'http://fonts.googleapis.com/css?family=Merriweather:400,300,700,900,900italic,700italic,400italic,300italic', rel:'stylesheet', type: 'text/css' }
     %link{ href: 'http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900', rel:'stylesheet', type: 'text/css' }
     %link{ href: 'http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', rel: 'stylesheet', type: 'text/css' }
@@ -33,55 +33,57 @@
 
       .progress-bar.js-progress-bar
 
+    .l-leftbar.left-bar
+      %ul.outline
+
+        %li
+          .outline__row.outline__row--header
+            %i.fa.fa-chevron-right.js-expand
+            .checkbox
+            %a{ rel: 'Serverless Puppet' }
+              Serverless Puppet
+
+          %ul
+            %li
+              .outline__row
+                .checkbox
+                %a{ rel: 'Resources and the RAL' }
+                  Resources and the RAL
+            
+            %li
+              .outline__row
+                .checkbox
+                %a{ rel: 'Manifests' }
+                  Manifests
+            
+            %li
+              .outline__row
+                .checkbox
+                %a{ rel: 'Ordering' }
+                  Ordering
+
+        %li
+          .outline__row.outline__row--header
+            %i.fa.fa-chevron-right.js-expand
+            .checkbox
+            %a{ rel: 'Master/Agent Puppet' }
+              Master/Agent Puppet
+
+          %ul
+            %li
+              .outline__row
+                .checkbox
+                %a{ rel: 'Agent Master Basic' }
+                  Agent Master Basic
+            
+            %li
+              .outline__row
+                .checkbox
+                %a{ rel: 'Agent Prep' }
+                  Agent Prep
+
+
     %main
-      .l-leftbar.js-stick
-        %ul.outline
-
-          %li
-            .outline__row.outline__row--header
-              %i.fa.fa-chevron-right.js-expand
-              .checkbox
-              %a{ rel: 'Serverless Puppet' }
-                Serverless Puppet
-
-            %ul
-              %li
-                .outline__row
-                  .checkbox
-                  %a{ rel: 'Resources and the RAL' }
-                    Resources and the RAL
-              
-              %li
-                .outline__row
-                  .checkbox
-                  %a{ rel: 'Manifests' }
-                    Manifests
-              
-              %li
-                .outline__row
-                  .checkbox
-                  %a{ rel: 'Ordering' }
-                    Ordering
-
-          %li
-            .outline__row.outline__row--header
-              %i.fa.fa-chevron-right.js-expand
-              .checkbox
-              %a{ rel: 'Master/Agent Puppet' }
-                Master/Agent Puppet
-
-            %ul
-              %li
-                .outline__row
-                  .checkbox
-                  %a{ rel: 'Agent Master Basic' }
-                    Agent Master Basic
-              
-              %li
-                .outline__row
-                  .checkbox
-                  %a{ rel: 'Agent Prep' }
-                    Agent Prep
               
       .l-content-wrapper.js-waypoint
         .module.path.l-content
@@ -95,16 +97,6 @@
             %a.js-page-marker-top{ rel: 'Serverless Puppet' }
             %h2.big Serverless Puppet
             %a.js-page-marker-bottom{ rel: 'Serverless Puppet' }
-
-
-
-
-
-
-
-
-
-
 
 
             .section.js-track-progress
@@ -464,29 +456,19 @@
               %a.js-page-marker-bottom{ rel: 'Resources and the RAL' }
 
               .section-end
-                .checkbox
-                %span I finished Resources and the RAL
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                %h3
+                  Resources and the RAL
+                  %span Wrap Up
+                .section-end-content
+                  .checkbox.js-checkbox{ rel: 'Resources and the RAL' }
+                  %p.finished I finished Resources and the RAL
+                  .additional
+                    %img{ src: '', width: 40, height: 40 }
+                    %p
+                      Now that you've finished Resources and the RAL, would you like to
+                      give feedback to the author?
+                    %textarea
+                    %button.submit
 
 
             .section.js-track-progress
@@ -1048,11 +1030,16 @@
                 %span I finished Manifests
 
 
-
-        .spacer
-
       .l-rightbar
-        Notes section
+        
+
+    .bottom-bar.l-bottom-bar
+      .l-vertical-center
+        %img.l-mrs.l-mls{ src: 'steve.png', width: 32 }
+        %span.text--small
+          Steve Rivera &middot; Learning Puppet &middot;
+          %span.text--light Last Updated:
+          Nov. 14, 2014
 
 
 
